@@ -14,5 +14,6 @@ db.disconnect = () => {
 };
 
 db.User = require("./user");
+db.Tweet = require("./tweet");
 
 module.exports = db;

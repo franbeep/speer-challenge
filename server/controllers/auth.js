@@ -87,7 +87,7 @@ const registerUser = (req, res, next) => {
     .then((user) => {
       res.status(201).send({
         message: `User ${user.username} created with success.`,
-        user: user,
+        user,
       });
     })
     .catch((err) => {
@@ -142,11 +142,16 @@ const checkToken = (req, res, next) => {
       return res.status(401).send({ message: "Invalid token." });
     }
     req.userId = decoded.id;
-    User.find({ _id: decoded.id }).then((users) => {
-      const [user] = users;
-      req.user = user; // injecting user data into the request to use later
-    });
-    next();
+    User.find({ _id: decoded.id })
+      .then((users) => {
+        const [user] = users;
+        req.user = user; // injecting user data into the request to use later
+        next();
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send({ message: "Internal Server Error." });
+      });
   });
 };
 

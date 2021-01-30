@@ -1,0 +1,22 @@
+# docker-compose.yml
+version: "2"
+services:
+  app:
+    container_name: speer-challenge
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - ENV=$BUILD_ENVIRONMENT
+    env_file:
+      - .env
+    ports:
+      - "$PORT:$PORT"
+    links:
+      - database
+    depends_on:
+      - database
+    command: bash -c "if [ '$BUILD_ENVIRONMENT' = 'production' ] ; then npm run prod ; else npm run dev ; fi"
+
+  database:
+    image: mongo

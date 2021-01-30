@@ -17,7 +17,7 @@
   "scripts": {
     "start": "node server/bin/www",
     "dev": "nodemon server/bin/www",
-    "test": "jest --collectCoverage --runInBand"
+    "test": "TESTING=true jest --collectCoverage --runInBand"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

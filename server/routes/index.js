@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
-router.use("/auth", require("./auth"));
+router.use("/ws", require("./webchat"));
+router.use("/api/auth", require("./auth"));
 
 module.exports = router;

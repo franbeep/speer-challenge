@@ -1,6 +1,8 @@
 const express = require("express");
 const db = require("./models");
 const app = express();
+const { setupExpressWs } = require("./controllers/webchat");
+const expressWs = require("express-ws")(app);
 require("dotenv").config();
 
 db.connect(process.env.DB_HOST, process.env.DB_PORT, process.env.DB_NAME)
@@ -17,13 +19,16 @@ db.connect(process.env.DB_HOST, process.env.DB_PORT, process.env.DB_NAME)
       db.disconnect();
     });
 
+    // for reference
+    setupExpressWs(expressWs);
+
     // add middleware and routes after connecting to the db
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
 
     app.use(require("morgan")("combined"));
 
-    app.use("/api", require("./routes"));
+    app.use("/", require("./routes"));
   });
 
 module.exports = app;

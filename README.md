@@ -13,7 +13,7 @@ Then, you add its name to the environment file, and rename the file to `.env`.
 
 Launches the server for production
 
-### `npm dev`
+### `npm run dev`
 
 Opens a webserver with hot-reload
 

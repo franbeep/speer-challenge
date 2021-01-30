@@ -4,22 +4,33 @@ A mock of a twitter-like app.
 
 ## Instructions
 
-To use it, you will need to first install `MongoDB` and create a database.
-Then, you add its name to the environment file, and rename the file to `.env`.
+There are 2 ways of running this project: You can either install mongodb, start it and add its path/port/database to the environment file `.env`, or you can download `docker-compose` and just do a `docker-compose build`.
 
 ## Available Scripts
 
-### `npm start`
+### `npm start` or `docker-compose up`
 
-Launches the server for production
+Launches the server for production.
 
 ### `npm run dev`
 
-Opens a webserver with hot-reload
+Opens a webserver with hot-reload. ATTENTION: needs local mongodb.
 
 ### `npm test`
 
-Run a series of test suites using Jest
+Run a series of test suites using Jest.
+
+## Considerations
+
+Here I will list a few conclusions I have reached, and parts of the architectural choices that I used on this project.
+
+- I felt that some middleware route/controller related should be in the controller folder, instead of the middlware folder, because the ones on the middlware folder would be (If I hade to write any) related to a global aspect of the application. Sadly there wasn't any that I could think of.
+- I confess the error handling was a bit lacking. I can only think that the main motive was that I have opted to use JavaScript instead of a static typed language like TypeScript for ease of use and fast prototyping. With TypeScript I agree that error handling would make much more sense (with different kinds of exceptions) and would be more present.
+- Even though you were free to choose the technologies, I opted for a stack more closer to what the position entailed. I have a strong background on SQL, so it was a bit awkaward sometimes.
+- I opted for using JWT instead of OAuth2 that would attend more the needs of a twitteresque application because it was simply faster to implement, although testing its expiration use cases becomes much harder.
+- As I said, I have a strong background on SQL, so I wouldn't know about performance on NoSQL databases. I tried to optimize the best I could the Mongoose queries.
+- I first thought about using Redis and Websockets to solve the chat requirement. I ended up abandoning Redis and focusing only on WebSockets, since it wasn't explained that it should retain messages. Also, for tests, since it is not a http endpoint, I used a chrome extension to send/receive messages from the WebSocket endpoint.
+- All endpoints were tested with jest and postman.
 
 ## Thanks
 

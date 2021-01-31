@@ -31,6 +31,7 @@ Here I will list a few conclusions I have reached, and parts of the architectura
 - As I said, I have a strong background on SQL, so I wouldn't know about performance on NoSQL databases. I tried to optimize the best I could the Mongoose queries.
 - I first thought about using Redis and Websockets to solve the chat requirement. I ended up abandoning Redis and focusing only on WebSockets, since it wasn't explained that it should retain messages. Also, for tests, since it is not a http endpoint, I used a chrome extension to send/receive messages from the WebSocket endpoint.
 - All endpoints were tested with jest and postman.
+- Just a small detail that I didn't indexed Tweet by mistake, I should have had. I sincerely forgot to do, however I'd like to leave the code as it was before the submission due.
 
 ## Thanks
 

@@ -2,6 +2,8 @@
 
 A mock of a twitter-like app.
 
+![CircleCI](https://img.shields.io/circleci/build/github/franbeep/speer-challenge/main)
+
 ## Instructions
 
 There are 2 ways of running this project: You can either install mongodb, start it and add its path/port/database to the environment file `.env`, or you can download `docker-compose` and just do a `docker-compose build`.

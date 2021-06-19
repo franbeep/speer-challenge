@@ -4,6 +4,7 @@ A mock of a twitter-like app.
 
 ![CircleCI](https://img.shields.io/circleci/build/github/franbeep/speer-challenge/main)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=franbeep_speer-challenge&metric=alert_status)](https://sonarcloud.io/dashboard?id=franbeep_speer-challenge)
+[![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=franbeep_speer-challenge&metric=coverage)](https://sonarcloud.io/component_measures/metric/coverage/list?id=franbeep_speer-challenge)
 
 ## Instructions
 

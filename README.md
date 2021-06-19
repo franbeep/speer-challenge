@@ -1,30 +1,43 @@
 ## Speer Challenge App
 
-A mock of a twitter-like app.
+<h1 align="center">
+  Speer - Challenge
+</h1>
 
-![CircleCI](https://img.shields.io/circleci/build/github/franbeep/speer-challenge/main)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=franbeep_speer-challenge&metric=alert_status)](https://sonarcloud.io/dashboard?id=franbeep_speer-challenge)
-[![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=franbeep_speer-challenge&metric=coverage)](https://sonarcloud.io/component_measures/metric/coverage/list?id=franbeep_speer-challenge)
+<p align="center">
+  🐦🐦🐦
+</p>
 
-## Instructions
+<p align="center">
+  A mock of a twitter-like app.
+</p>
+
+<p align="center">
+  <a href="#">
+    <img alt="CircleCI" src="https://img.shields.io/circleci/build/github/franbeep/speer-challenge/main">
+  </a>
+  <a href="https://sonarcloud.io/api/project_badges/measure?project=franbeep_speer-challenge&metric=coverage">
+    <img alt="Sonar Coverage" src="https://img.shields.io/sonar/coverage/franbeep_speer-challenge?server=https%3A%2F%2Fsonarcloud.io">
+  </a>
+  <a href="https://sonarcloud.io/dashboard?id=franbeep_speer-challenge">
+    <img alt="Quality Gate Status" src="https://sonarcloud.io/api/project_badges/measure?project=franbeep_speer-challenge&metric=alert_status">
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg">
+  </a>
+</p>
+
+<h2>About</h2>
+
+<p>
+  Challenge provided my Speer Technologies for a Back End internship position. This is a demo on a twitter-esque clone API, with authentication and a few models.
+</p>
+
+<h2>Instructions</h2>
 
 There are 2 ways of running this project: You can either install mongodb, start it and add its path/port/database to the environment file `.env`, or you can download `docker-compose` and just do a `docker-compose build`.
 
-## Available Scripts
-
-### `npm start` or `docker-compose up`
-
-Launches the server for production.
-
-### `npm run dev`
-
-Opens a webserver with hot-reload. ATTENTION: needs local mongodb.
-
-### `npm test`
-
-Run a series of test suites using Jest.
-
-## Considerations
+<h2>Considerations</h2>
 
 Here I will list a few conclusions I have reached, and parts of the architectural choices that I used on this project.
 
@@ -37,6 +50,4 @@ Here I will list a few conclusions I have reached, and parts of the architectura
 - All endpoints were tested with jest and postman.
 - Just a small detail that I didn't indexed Tweet by mistake, I should have had. I sincerely forgot to do, however I'd like to leave the code as it was before the submission due.
 
-## Thanks
-
-❤️
+<h3>Thanks!</h3>

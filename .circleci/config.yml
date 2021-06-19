@@ -32,9 +32,9 @@ jobs:
           name: Run tests
           command: npm test
       - store_test_results:
-          path: results
+          path: server/__tests__/coverage/
       - store_artifacts:
-          path: coverage
+          path: server/__tests__/coverage/
       - sonarcloud/scan
 
 workflows:

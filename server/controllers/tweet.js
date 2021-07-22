@@ -12,10 +12,6 @@ const checkOwnershipTweet = (req, res, next) => {
           .status(401)
           .send({ message: "You are not authorized to perform this action." });
       }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send({ message: "Internal Server Error" });
     });
 };
 
@@ -82,36 +78,29 @@ const checkFieldsByAction = (method) => {
  */
 const createTweet = (req, res, next) => {
   Tweet.create({
-    message: req.body.message,
+    message: `${req.body.message}`,
     user: req.user._id,
-  })
-    .then((tweet) => {
-      res.status(201).send({
-        message: "Sent a tweet.",
-        tweet,
-      });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send({ message: "Internal Server Error" });
+  }).then((tweet) => {
+    res.status(201).send({
+      message: "Sent a tweet.",
+      tweet,
     });
+  });
 };
 
 /**
  * Update (your)  Tweet
  */
 const updateTweet = (req, res, next) => {
-  Tweet.findOneAndUpdate({ _id: req.body.id }, { message: req.body.message })
-    .then((tweet) => {
-      res.status(201).send({
-        message: "Tweet updated.",
-        tweet,
-      });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send({ message: "Internal Server Error" });
+  Tweet.findOneAndUpdate(
+    { _id: `${req.body.id}` },
+    { message: req.body.message }
+  ).then((tweet) => {
+    res.status(201).send({
+      message: "Tweet updated.",
+      tweet,
     });
+  });
 };
 
 /**
@@ -130,10 +119,6 @@ const findOneTweet = (req, res, next) => {
       res.status(200).send({
         tweet,
       });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send({ message: "Internal Server Error" });
     });
 };
 
@@ -155,10 +140,6 @@ const findTweet = (req, res, next) => {
       res.status(200).send({
         tweets,
       });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send({ message: "Internal Server Error" });
     });
 };
 
@@ -166,16 +147,11 @@ const findTweet = (req, res, next) => {
  * Delete (your) Tweet
  */
 const deleteTweet = (req, res, next) => {
-  Tweet.deleteOne({ _id: req.body.id })
-    .then(() => {
-      res.status(200).send({
-        message: "Deleted a tweet.",
-      });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send({ message: "Internal Server Error" });
+  Tweet.deleteOne({ _id: `${req.body.id}` }).then(() => {
+    res.status(200).send({
+      message: "Deleted a tweet.",
     });
+  });
 };
 
 module.exports = {

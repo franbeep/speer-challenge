@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const db = {};
 
+/* istanbul ignore next */
 db.connect = (HOST, PORT, DATABASE) => {
   return mongoose.connect(`mongodb://${HOST}:${PORT}/${DATABASE}`, {
     useNewUrlParser: true,
@@ -9,6 +10,7 @@ db.connect = (HOST, PORT, DATABASE) => {
   });
 };
 
+/* istanbul ignore next */
 db.disconnect = () => {
   mongoose.disconnect();
 };

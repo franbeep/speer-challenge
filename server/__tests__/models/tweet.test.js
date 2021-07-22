@@ -1,14 +1,20 @@
 const request = require("supertest");
 const app = require("../../index");
+const db = require("../../test.db");
 const User = require("../../models/user");
 const Tweet = require("../../models/tweet");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-require("../test.actions");
 
 let token;
 let user;
 let tweet;
+
+beforeAll(db.connect);
+
+afterEach(db.clear);
+
+afterAll(db.disconnect);
 
 beforeEach(async () => {
   // initial data

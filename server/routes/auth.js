@@ -4,7 +4,7 @@ const auth = require("../controllers/auth");
 router.post(
   "/register",
   [
-    auth.checkFieldsByRoute("register"),
+    auth.checkRegisterFields(),
     auth.checkUserExistsByFields("username", "email"),
   ],
   auth.registerUser
@@ -13,7 +13,7 @@ router.post(
 router.post(
   "/login",
   [
-    auth.checkFieldsByRoute("login"),
+    auth.checkLoginFields(),
     auth.checkUserExistsByFields("username"),
     auth.checkCredentials,
   ],

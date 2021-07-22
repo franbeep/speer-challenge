@@ -1,9 +1,15 @@
 const request = require("supertest");
 const app = require("../../index");
+const db = require("../../test.db");
 const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-require("../test.actions");
+
+beforeAll(db.connect);
+
+afterEach(db.clear);
+
+afterAll(db.disconnect);
 
 beforeEach(async () => {
   // initial data

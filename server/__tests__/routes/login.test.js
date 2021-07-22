@@ -1,21 +1,27 @@
 const request = require("supertest");
 const app = require("../../index");
+const db = require("../../test.db");
 const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
-require("../test.actions");
-
-beforeEach(async () => {
-  // initial data
-  await User.create({
-    username: "felipera",
-    email: "f@f.com",
-    password: bcrypt.hashSync("123123123", 8),
-  });
-});
 
 const endpoint = "/api/auth/login";
 
 describe(`POST ${endpoint}`, () => {
+  beforeAll(db.connect);
+
+  beforeEach(async () => {
+    // initial data
+    await User.create({
+      username: "felipera",
+      email: "f@f.com",
+      password: bcrypt.hashSync("123123123", 8),
+    });
+  });
+
+  afterAll(db.disconnect);
+
+  afterEach(db.clear);
+
   /* sanitizing tests */
 
   it("should reject when the username is missing", async () => {

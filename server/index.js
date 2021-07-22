@@ -5,6 +5,7 @@ const { setupExpressWs } = require("./controllers/webchat");
 const expressWs = require("express-ws")(app);
 require("dotenv").config();
 
+/* istanbul ignore next */
 const dbStart = () => {
   db.connect(process.env.DB_HOST, process.env.DB_PORT, process.env.DB_NAME)
     .catch((err) => {
@@ -22,6 +23,7 @@ const dbStart = () => {
     });
 };
 
+/* istanbul ignore next */
 if (!process.env.TESTING) {
   dbStart();
 }

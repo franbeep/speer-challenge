@@ -1,12 +1,9 @@
 const request = require("supertest");
 const app = require("../../index");
-const db = require("../../test.db");
 const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-// const sinon = require("sinon");
-
-beforeAll(async () => await db.connect());
+require("../test.actions");
 
 beforeEach(async () => {
   // initial data
@@ -16,12 +13,6 @@ beforeEach(async () => {
     password: bcrypt.hashSync("123123123", 8),
   });
 });
-
-afterEach(async () => {
-  await db.clear();
-});
-
-afterAll(async () => await db.disconnect());
 
 const endpoint = "/api/auth/restricted";
 

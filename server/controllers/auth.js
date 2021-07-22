@@ -35,39 +35,37 @@ const checkUserExistsByFields = (...fields) => {
  * @param {string} route - [register, login]
  */
 const checkFieldsByRoute = (route) => {
+  const validateFunction = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  };
+
   switch (route) {
     case "register":
       return [
         body("username").isLength({ min: 5 }).not().isEmpty().trim().escape(),
         body("email").isEmail().normalizeEmail(),
         body("password").isLength({ min: 8 }).not().isEmpty().escape(),
-        (req, res, next) => {
-          const errors = validationResult(req);
-          if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-          }
-          next();
-        },
+        validateFunction,
       ];
     case "login":
       return [
         body("username").isLength({ max: 50 }).not().isEmpty().trim().escape(),
         body("password").isLength({ max: 50 }).not().isEmpty().escape(),
-        (req, res, next) => {
-          const errors = validationResult(req);
-          if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-          }
-          next();
-        },
+        validateFunction,
       ];
     default:
-      return (req, res, next) => {
-        console.error(
-          `Error: Wrong route '${route}' passed to checkFieldsByRoute.`
-        );
-        return res.status(500).json({ errors: "Internal Server Error" });
-      };
+      return [
+        (req, res, next) => {
+          console.error(
+            `Error: Wrong route '${route}' passed to checkFieldsByRoute.`
+          );
+          return res.status(500).json({ errors: "Internal Server Error" });
+        },
+      ];
   }
 };
 
@@ -137,8 +135,8 @@ const checkToken = (req, res, next) => {
     return res.status(401).send({ message: "No token provided." });
   }
 
-  jwt.verify(token, process.env.SECRET, (err, decoded) => {
-    if (err) {
+  jwt.verify(token, process.env.SECRET, (failed, decoded) => {
+    if (failed) {
       return res.status(401).send({ message: "Invalid token." });
     }
     req.userId = decoded.id;

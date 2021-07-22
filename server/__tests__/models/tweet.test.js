@@ -1,16 +1,14 @@
 const request = require("supertest");
 const app = require("../../index");
-const db = require("../../test.db");
 const User = require("../../models/user");
 const Tweet = require("../../models/tweet");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+require("../test.actions");
 
 let token;
 let user;
 let tweet;
-
-beforeAll(async () => await db.connect());
 
 beforeEach(async () => {
   // initial data
@@ -33,12 +31,6 @@ beforeEach(async () => {
     tweet = _tweet;
   });
 });
-
-afterEach(async () => {
-  await db.clear();
-});
-
-afterAll(async () => await db.disconnect());
 
 const endpoint = "/api/tweet";
 
@@ -83,8 +75,6 @@ describe(`GET ${endpoint}`, () => {
   });
 
   it("should accept when id is correct (or incorret)", async () => {
-    console.log(tweet._id);
-
     const response = await request(app)
       .get(endpoint)
       .set("Authorization", `Bearer ${token}`)

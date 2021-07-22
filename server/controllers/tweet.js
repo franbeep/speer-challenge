@@ -55,12 +55,14 @@ const checkFieldsByAction = (method) => {
       chain = [body("id").not().isEmpty().trim().escape()];
       break;
     default:
-      return (req, res, next) => {
-        console.error(
-          `Error: Wrong route '${route}' passed to checkFieldsByRoute.`
-        );
-        return res.status(500).json({ errors: "Internal Server Error" });
-      };
+      return [
+        (req, res, next) => {
+          console.error(
+            `Error: Wrong route '${route}' passed to checkFieldsByRoute.`
+          );
+          return res.status(500).json({ errors: "Internal Server Error" });
+        },
+      ];
   }
 
   return [
@@ -122,9 +124,6 @@ const findOneTweet = (req, res, next) => {
     return res.status(400).send({ message: "Id not found" });
   }
 
-  console.log("req.query: ");
-  console.log(req.query);
-
   Tweet.findOne({ _id: req.query.id })
     .lean()
     .then((tweet) => {
@@ -145,7 +144,6 @@ const findTweet = (req, res, next) => {
   // still need to sanitize query params perhaps
 
   if (!req.query.username) {
-    console.log("Username not found");
     return res.status(400).send({ message: "Username not found" });
   }
 

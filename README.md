@@ -5,11 +5,11 @@
 </h1>
 
 <p align="center">
-  🐦🐦🐦
+  🦆🦆🦆
 </p>
 
 <p align="center">
-  A mock of a twitter-like app.
+  A backend mock of a twitter-like app.
 </p>
 
 <p align="center">
